@@ -1,50 +1,76 @@
 <?php
-    $deck = array();
-    for($i = 1; $i <= 52; $i++){
-        $deck[] = $i;
-    }
-   // print_r($deck);
-    shuffle($deck);
-    echo "<hr>";
-    print_r($deck);
     
-    $card = array_pop($deck);
-    
+    // Two Dimensional Array that holds a player's hand
+    // Rows represent card suits, while columns represent card values
+    // Column is 53 so that each card value 1 - 52 is represented 
+    $hand[4][53];
+    // initialiize every value to 0
+     for($i = 0; $i < 4; $i++){
+         for($j = 0; $j <= 52; $j++){
+             $hand[$row][$col] = 0;
+         }
+     }
+
+    // 1 dimensional array that holds all suits
+    // using index 0 -3
     $suit = array("clubs", "diamonds", "hearts", "spades");
-    $cardSuit = $suit[floor($card/13)];
-    $cardValue = $card % 13;
-    // if card value == 0 --> 13
-    
-    //echo "<img src =cards/clubs/1.png>";
-    echo "<hr>";
-    echo "<img src =cards/$cardSuit/$cardValue.png>";
-    echo "<hr>";
- 
-   $player1 = array(array());//initializing two dimensional array for player1
-    
-    for ($i=0; $i<5; $i++){//getting cards for player1
-    
+    // Initializing the deck of cards 
+    // with values 1 - 52 in a 1D array
+     $deck = array();
+     for($i = 1; $i <= 52; $i++){
+        $deck[] = $i;
+     }
+
+    function getHand(){
+        global $suit;
+        global $hand;
+        global $deck;
+        $totalPoints = 0;
+        // Shuffles deck
+        shuffle($deck); 
+        do{
+            // Selects and removes random card from deck
             $card = array_pop($deck);
-    
-            $suit = array("clubs", "diamonds", "hearts", "spades");
             $cardSuit = $suit[floor($card/13)];
             $cardValue = $card % 13;
             if($cardValue==0){
                 $cardValue=13;
             }
-            $player1[$i][0]=$cardSuit;//making an array with card value and suit and asigning it to player1
-            $player1[$i][1]=$cardValue;//had to break it up like this or else I get one letter for the value of suit for some reason
-        
+            // Two dimensional array that holds a player's hand
+            // Rows represent card suits, while columns represent card values
+            $hand[$cardSuit][$cardValue] = $cardValue;
+            // Add card value to total points
+            $totalPoints += $cardValue;
+        }while($totalPoint <= 37);
+        return $hand;
     }
-
     
-    //Assuming a two-dimensional array will be used for each of the players hand.
-    function displayHand($player1){//passing a two dimensional array
-        for ($i=0; $i<count($player1); $i++ ){
-               echo "<img src =cards/".$player1[$i][0]."/".$player1[$i][1].".png>";
+    // Displays hand of the player that 
+    // is passed in as an argument
+    // Player that is passed in is a 2D array that contains their hand.
+    function displayHand($player1){
+        for ($row =0; $row < 4; $row++ ){
+            for($col = 1; $col <= 52; $col++)
+                if($player1[$row][$col] > 0)
+                    echo "<img src =cards/$row/$col.png>";
        }
     }
-    
-    displayHand($player1);//calling function
-    
+
 ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        
+        <?php 
+        // These are each player's hand for one game
+        $player1 = getHand();
+        //$player2 = getHand();
+        //$player3 = getHand();
+        //$player4 = getHand();
+        displayHand($player1)
+        ?>
+    </body>
+</html>
