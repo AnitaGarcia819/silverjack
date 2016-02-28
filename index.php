@@ -5,8 +5,8 @@
     }
    // print_r($deck);
     shuffle($deck);
-    echo "<hr>";
-    print_r($deck);
+   // print_r($deck);
+   echo "<h1> Silver Jack<h1/>";
     
     $card = array_pop($deck);
     
@@ -34,7 +34,6 @@
             }
             $player1[$i][0]=$cardSuit;//making an array with card value and suit and asigning it to player1
             $player1[$i][1]=$cardValue;//had to break it up like this or else I get one letter for the value of suit for some reason
-        
     }
 
     
@@ -48,3 +47,16 @@
     displayHand($player1);//calling function
     
 ?>
+
+<html>
+    <head>
+        <title>SilverJack</title>
+        <link href="style.css" rel="stylesheet" />
+    </head>
+    
+    <body>
+       <!-- <h1> SilverJack </h1> -->
+        
+    </body>
+    
+</html>
