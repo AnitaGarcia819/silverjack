@@ -168,19 +168,44 @@
         $player4 = getHand();
         
         $names = array("Anita", "Beto", "Laura", "Yarely");
-        
+        $usedNames = array();
         $totalPoints = array();
         echo "<br>";
-        echo $names[0].": " ;
+        
+        $r = rand(0,3);
+        $usedNames[] = $r;
+        echo $names[$r].": " ;
+        echo "<img src='cards/clubs/$r.png' width ='50'height = '50'>";
         array_push($totalPoints,  displayHand($player1));
+        
         echo "<br>";
-        echo $names[1].": " ;
+        $r = rand(0,3);
+        while(in_array($r, $usedNames)){
+            $r = rand(0,3);
+        }
+        $usedNames[] = $r;
+        echo $names[$r].": " ;
+        echo "<img src='cards/clubs/$r.png' width ='50'height = '50'>";
         array_push($totalPoints,  displayHand($player2));
+        
         echo "<br>";
-        echo $names[2].": " ;
+        $r = rand(0,3);
+        while(in_array($r, $usedNames)){
+            $r = rand(0,3);
+        }
+        $usedNames[] = $r;
+        echo $names[$r].": " ;
+        echo "<img src='cards/clubs/$r.png' width ='50'height = '50'>";
         array_push($totalPoints,  displayHand($player3));
+        
         echo "<br>";
-        echo $names[3].": " ;
+        $r = rand(0,3);
+        while(in_array($r, $usedNames)){
+            $r = rand(0,3);
+        }
+        $usedNames[] = $r;
+        echo $names[$r].": " ;
+        echo "<img src='cards/clubs/$r.png' width ='50'height = '50'>";
         array_push($totalPoints,  displayHand($player4));
         echo "<br>";
         echo "<br>";
