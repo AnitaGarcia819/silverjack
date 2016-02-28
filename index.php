@@ -22,7 +22,6 @@
     for($i = 1; $i <= 52; $i++){
         $deck[] = $i;
     }
-    echo "<h1> Silver Jack<h1/>";
     
     function getHand(){
         global $suit;
@@ -114,22 +113,21 @@
                 }
         }
         $totalPoints = getTotalPoints($player);
-        echo "TOTAL POINTS: ".$totalPoints;
         return $totalPoints;
     }
     
     function displayWinners($totalPoints, $names){
         
-       $difference = 42; //keeps track of who is closer to the number 42
+        $difference = 42; //keeps track of who is closer to the number 42
         $pointsWon = 0; //keeps track of total point earned in a game
-        $moreThanOne = -1;//keesp track if there is no winner = 0, one winner = 1, or multiple winners > 1;
+        $moreThanOne = -1;//keeps track if there is no winner = 0, one winner = 1, or multiple winners > 1;
         $name; //keeps track of all the winner's name
         for($i = 0; $i < count($totalPoints); $i++){
             
             $pointsWon += $totalPoints[$i]; //adds the numbers to points won
             if(42 >= $totalPoints[$i] && $difference > (42-$totalPoints[$i])){
                 //only counts if number is smaller than 42 and the difference is smaller
-               $name = $names[$i];
+                $name = $names[$i];
                 $difference = 42- $totalPoints[$i];
                 $moreThanOne = 1;
             }else if($difference == (42-$totalPoints[$i])){ 
@@ -139,16 +137,18 @@
             }
         }
         
+        echo "<h3> <div class ='winner'>";
         //displays appropriate message 
        if($moreThanOne == 1){
-             echo $name." wins ".$pointsWon." points!!";
+            echo $name." wins ".$pointsWon." points!!";
        }else if($moreThanOne == 0){
-           echo "No one wins ".$pointsWon." points! :(";
+            echo "No one wins ".$pointsWon." points! :(";
        }
        else{
            //if more than one play won the points are distribute
            echo $name." won ".($pointsWon/$moreThanOne)." points each!!";
        }
+       echo "</div></h3>";
     }
 ?>
 <!DOCTYPE html>
@@ -159,6 +159,7 @@
         
     </head>
     <body>
+        <h1> Silver Jack<h1/>
         
         <?php
         // These are each player's hand for one game
@@ -168,24 +169,25 @@
         $player4 = getHand();
         
         $names = array("Anita", "Beto", "Laura", "Yarely");
-        
+        $players = array("0"=>$player1, "1"=>$player2, "2"=>$player3, "3"=>$player4);
+        echo "<table>";
+        echo "<tr> <td><strong>Players</strong></td> <td><strong>Hand</strong></td> <td><strong>Points</strong></td> </tr>";
         $totalPoints = array();
-        echo "<br>";
-        echo $names[0].": " ;
-        array_push($totalPoints,  displayHand($player1));
-        echo "<br>";
-        echo $names[1].": " ;
-        array_push($totalPoints,  displayHand($player2));
-        echo "<br>";
-        echo $names[2].": " ;
-        array_push($totalPoints,  displayHand($player3));
-        echo "<br>";
-        echo $names[3].": " ;
-        array_push($totalPoints,  displayHand($player4));
-        echo "<br>";
-        echo "<br>";
-        
-        //finds and displays the winner, or winners. 
+        for($i = 0; $i < count($names); $i++){
+            echo "<tr>";
+            echo "<td>";
+            echo $names[$i].": " ;
+            echo "</td>";
+            echo "<td>";
+            array_push($totalPoints,  displayHand($players[$i]));
+            echo "</td>";
+            echo "<td>";
+            echo $totalPoints[$i];
+            echo "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        //finds and displays the winner, or winners.
         displayWinners($totalPoints, $names);
         
         ?>
