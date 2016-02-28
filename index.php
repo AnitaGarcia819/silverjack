@@ -1,12 +1,10 @@
 <?php
-    
     // Two Dimensional Array that holds a player's hand
     // Rows represent card suits, while columns represent card values
     // Column is 53 so that each card value 1 - 52 is represented 
     $hand = array(array());
-    // initialiize every value to 0
+    // Initialiize every value to 0
     function initHand($hand){
-        //global $hand;
         for($i = 0; $i < 4; $i++){
             for($j = 0; $j <= 52; $j++){
              $hand[$row][$col] = 0;
@@ -24,27 +22,8 @@
     for($i = 1; $i <= 52; $i++){
         $deck[] = $i;
     }
-   // print_r($deck);
-    shuffle($deck);
-   // print_r($deck);
-   echo "<h1> Silver Jack<h1/>";
+    echo "<h1> Silver Jack<h1/>";
     
-    $card = array_pop($deck);
-    
-    $suit = array("clubs", "diamonds", "hearts", "spades");
-    $cardSuit = $suit[floor($card/13)];
-    $cardValue = $card % 13;
-    // if card value == 0 --> 13
-    
-    //echo "<img src =cards/clubs/1.png>";
-    echo "<hr>";
-    echo "<img src =cards/$cardSuit/$cardValue.png>";
-    echo "<hr>";
- 
-   $player1 = array(array());//initializing two dimensional array for player1
-    
-    for ($i=0; $i<5; $i++){//getting cards for player1
-
     function getHand(){
         global $suit;
         global $hand;
@@ -170,12 +149,8 @@
            //if more than one play won the points are distribute
            echo $name." won ".($pointsWon/$moreThanOne)." points each!!";
        }
-      
     }
-    
 ?>
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -212,7 +187,6 @@
         
         //finds and displays the winner, or winners. 
         displayWinners($totalPoints, $names);
-    
         
         ?>
     </body>
