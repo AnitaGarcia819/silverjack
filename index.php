@@ -189,10 +189,10 @@
             echo "<img src='img/$r.jpg' width ='50'height = '50'>";
             echo "</td>";
             echo "<td>";
-            array_push($totalPoints,  displayHand($players[$i]));
+            array_push($totalPoints,  displayHand($players[$r]));
             echo "</td>";
             echo "<td>";
-            echo $totalPoints[$i];
+            echo getTotalPoints($players[$r]);
             echo "</td>";
             echo "</tr>";
         }
