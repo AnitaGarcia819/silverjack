@@ -121,32 +121,38 @@
         $difference = 42; //keeps track of who is closer to the number 42
         $pointsWon = 0; //keeps track of total point earned in a game
         $moreThanOne = -1;//keeps track if there is no winner = 0, one winner = 1, or multiple winners > 1;
+        $removePoints = 0;
         $name; //keeps track of all the winner's name
         for($i = 0; $i < count($totalPoints); $i++){
             
             $pointsWon += $totalPoints[$i]; //adds the numbers to points won
             if(42 >= $totalPoints[$i] && $difference > (42-$totalPoints[$i])){
                 //only counts if number is smaller than 42 and the difference is smaller
+              
+                $removePoints = $totalPoints[$i];
                 $name = $names[$i];
                 $difference = 42- $totalPoints[$i];
                 $moreThanOne = 1;
+            
+               
             }else if($difference == (42-$totalPoints[$i])){ 
                 //if there is more than one winner it adds its name 
                 $moreThanOne++;
                 $name = $name.", ".$names[$i];
+              $removePoints += $totalPoints[$i];
             }
         }
         
         echo "<h3> <div class ='winner'>";
         //displays appropriate message 
        if($moreThanOne == 1){
-            echo $name." wins ".$pointsWon." points!!";
+            echo $name." wins ".($pointsWon - $removePoints)." points!!";
        }else if($moreThanOne == 0){
             echo "No one wins ".$pointsWon." points! :(";
        }
        else{
            //if more than one play won the points are distribute
-           echo $name." won ".($pointsWon/$moreThanOne)." points each!!";
+           echo $name." won ".(($pointsWon - $removePoints)/$moreThanOne)." points each!!";
        }
        echo "</div></h3>";
     }
