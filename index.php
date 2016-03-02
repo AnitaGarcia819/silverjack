@@ -130,6 +130,7 @@
                 //only counts if number is smaller than 42 and the difference is smaller
               
                 $removePoints = $totalPoints[$i];
+
                 $name = $names[$i];
                 $difference = 42- $totalPoints[$i];
                 $moreThanOne = 1;
@@ -177,6 +178,7 @@
         $names = array("Anita", "Beto", "Laura", "Yarely");
         $usedNames = array();
         $totalPoints = array();
+        $afterNames = array();
         
         echo "<br>";
         $players = array("0"=>$player1, "1"=>$player2, "2"=>$player3, "3"=>$player4);
@@ -192,6 +194,7 @@
              }
             $usedNames[] = $r;
             echo $names[$r].": " ;
+            array_push($afterNames, $names[$r]);
             echo "<img src='img/$r.jpg' width ='50'height = '50'>";
             echo "</td>";
             echo "<td>";
@@ -204,7 +207,7 @@
         }
         echo "</table>";
         //finds and displays the winner, or winners.
-        displayWinners($totalPoints, $names);
+        displayWinners($totalPoints, $afterNames);
         
         ?>
     </body>
