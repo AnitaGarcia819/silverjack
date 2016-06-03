@@ -3,6 +3,7 @@
     // Rows represent card suits, while columns represent card values
     // Column is 53 so that each card value 1 - 52 is represented 
     $hand = array(array());
+	//Leaving a comment to test Git
     // Initialiize every value to 0
     function initHand($hand){
         for($i = 0; $i < 4; $i++){
